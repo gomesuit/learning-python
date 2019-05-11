@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 pyopenssl = "*"
+pysnooper = "*"
 
 [dev-packages]
 
