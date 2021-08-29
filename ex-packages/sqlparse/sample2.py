@@ -10,46 +10,43 @@ class RecursiveTokenParser(object):
     def get_table_names(self):
         elements = sqlparse.parse(self.query)
         for token in elements[0].tokens:
-
             if isinstance(token, Identifier):
                 self.identifier(token)
-           elif isinstance(token, Parenthesis):
-               self.parenthesis(token)
-           elif isinstance(token, Where):
-               self.where(token)
-
-       return [str(name) for name in self.names]
+            elif isinstance(token, Parenthesis):
+                self.parenthesis(token)
+            elif isinstance(token, Where):
+                self.where(token)
+        return [str(name) for name in self.names]
 
     def where(self, token):
-       for subtoken in token.tokens:
-           if isinstance(subtoken, Comparison):
-               self.comparison(subtoken)
+        for subtoken in token.tokens:
+            if isinstance(subtoken, Comparison):
+                self.comparison(subtoken)
 
     def comparison(self, token):
-       for subtoken in token.tokens:
-           if isinstance(subtoken, Parenthesis):
-               self.parenthesis(subtoken)
+        for subtoken in token.tokens:
+            if isinstance(subtoken, Parenthesis):
+                self.parenthesis(subtoken)
 
     def parenthesis(self, token):
-       for subtoken in token.tokens:
-           if isinstance(subtoken, Identifier):
-               self.identifier(subtoken)
-           elif isinstance(subtoken, Parenthesis):
-               self.parenthesis(subtoken)
+        for subtoken in token.tokens:
+            if isinstance(subtoken, Identifier):
+                self.identifier(subtoken)
+            elif isinstance(subtoken, Parenthesis):
+                self.parenthesis(subtoken)
 
     def identifier(self, token):
-       self.names.append(token)
+        self.names.append(token)
 
     def get_query(self):
-       return self.query
+        return self.query
 
 
 sql2 = """
-
-With
+With 
 a as
 (
- select
+ select 
    x,y
 from g
 )
@@ -60,9 +57,8 @@ from b
 left join a
 on b.id = a.id
 
-
-
 """
+
 t = RecursiveTokenParser(sql2)
 
 print(t.get_query())
