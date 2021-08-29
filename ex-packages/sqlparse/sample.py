@@ -1,12 +1,14 @@
 import sqlparse
+import pdb
+import rlcompleter
 
-# Split a string containing two SQL statements:
-raw = 'select * from foo; select * from bar;'
-statements = sqlparse.split(raw)
-statements
+pdb.Pdb.complete = rlcompleter.Completer(locals()).complete
 
-first = statements[0]
-print(sqlparse.format(first, reindent=True, keyword_case='upper'))
+raw = "/* Username: Scheduled, Task ID: c0a5, Query ID: 618, Queue: scheduled_queries, Query Hash: 57d4f90c1d */ WITH TMP AS(\n  SELECT\n    year, month,\n    sum(blendedcost) AS cost\n  FROM\n    \"aaaaa\".\"bbbbbb\"\n  GROUP BY\n    year, month\n)\n\nSELECT\n  year,\n  month,\n  year || month as yearmonth,\n  cost \nFROM\n  TMP\norder by\n  year desc, month desc"
 
-parsed = sqlparse.parse('select * from foo')[0]
-parsed.tokens
+print(sqlparse.format(raw, reindent=True, keyword_case='upper'))
+
+statement = sqlparse.parse(raw)[0]
+statement.tokens
+
+pdb.set_trace()
