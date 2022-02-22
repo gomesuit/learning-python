@@ -1,0 +1,2 @@
+- https://github.com/DeepLcom/deepl-python
+- https://www.deepl.com/en/blog/announcing-python-client-library-for-deepl-api
