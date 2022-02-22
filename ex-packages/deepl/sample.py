@@ -18,33 +18,6 @@ print(result[0].detected_source_lang)  # "JA"
 print(result[1].text)  # "How are you?"
 print(result[1].detected_source_lang)  # "ES"
 
-# Translate a formal document from English to German 
-translator.translate_document_from_filepath(
-    "Instruction Manual.docx",
-    "Bedienungsanleitung.docx",
-    target_lang="DE",
-    formality="more"
-)
-
-# Glossaries allow you to customize your translations
-glossary_en_to_de = translator.create_glossary(
-    "My glossary",
-    source_lang="EN",
-    target_lang="DE",
-    entries={"artist": "Maler", "prize": "Gewinn"},
-)
-
-with_glossary = translator.translate_text_with_glossary(
-    "The artist was awarded a prize.", glossary_en_to_de
-)
-print(with_glossary)  # "Der Maler wurde mit einem Gewinn ausgezeichnet."
-
-without_glossary = translator.translate_text(
-    "The artist was awarded a prize.", target_lang="DE"
-)
-print(without_glossary)  # "Der Künstler wurde mit einem Preis ausgezeichnet."
-
-
 # Check account usage
 usage = translator.get_usage()
 if usage.character.limit_exceeded:
