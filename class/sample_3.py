@@ -11,3 +11,6 @@ try:
     instance.__private_method()
 except AttributeError as e:
     print(e)  # 'MyClass' object has no attribute '__private_method'
+
+# 名前マングリングに従ってアクセス
+instance._MyClass__private_method()
