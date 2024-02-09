@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "learning-pyxel"
+version = "0.1.0"
+description = ""
+authors = ["gomesuit <9404411+gomesuit@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pyxel = "^2.0.6"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
