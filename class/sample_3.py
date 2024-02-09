@@ -5,6 +5,7 @@ class MyClass:
     def __private_method(self):
         print("これはプライベートメソッドです")
 
+
 # クラスの外部からプライベートメソッドにアクセスしようとするとエラーになる
 instance = MyClass()
 try:
